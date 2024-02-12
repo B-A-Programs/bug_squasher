@@ -20,7 +20,7 @@ const NavBar = () => {
         <UserButton afterSignOutUrl="/" />
       </SignedIn>
       <SignedOut>
-        <Button className="rounded-full bg-indigo-600 text-md px-7 py-5"><Link href="/sign-in">Login</Link></Button>
+        <Link href="/sign-in"><Button className="rounded-full bg-indigo-600 text-md px-7 py-5">Login</Button></Link>
       </SignedOut>
     </nav>
   )

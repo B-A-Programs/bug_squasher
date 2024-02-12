@@ -12,7 +12,7 @@ export const connectToDatabase = async () => {
     if (!MONGODB_URI) throw new Error('MONGODB_URI environment variable missing')
 
     cached.promise = cached.promise || mongoose.connect(MONGODB_URI, {
-        dbName: 'Evently',
+        dbName: 'BugSquasher',
         bufferCommands: false,
     })
 
