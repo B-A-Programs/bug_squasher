@@ -7,11 +7,11 @@ export default function RootLayout({
 }>) {
   return (
     <div className="flex h-screen flex-col">
-        <header className="w-full border-b">
+        <header className="w-full border-b-2 border-gray-300">
             <NavBar />
         </header>
-        <main className="flex-1 bg-slate-100">{children}</main>
-        <footer className="flex justify-center bg-slate-100 text-slate-600 mb-1">
+        <main className="flex-1 bg-slate-200">{children}</main>
+        <footer className="flex justify-center bg-slate-200 text-slate-600 mb-1">
             2024 BugSquasher. All rights reserved.
         </footer>
     </div>

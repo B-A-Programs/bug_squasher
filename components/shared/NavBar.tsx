@@ -6,10 +6,12 @@ import Link from "next/link"
 const NavBar = () => {
   return (
     <nav className="wrapper flex items-center justify-between">
-      <h1 className="flex justify-center items-center flex-row text-xl font-extrabold">
-        <Image src="/assets/bug_icon.jpg" alt="bug icon" width={40} height={40} />
-        <span className="purple_gradient">BugSquasher</span>
-      </h1>
+      <Link href="/">
+        <h1 className="flex justify-center items-center flex-row text-xl font-extrabold">
+          <Image src="/assets/bug_icon.jpg" alt="bug icon" width={40} height={40} />
+          <span className="purple_gradient">BugSquasher</span>
+        </h1>
+      </Link>
       <SignedIn>
       </SignedIn>
       <SignedIn>
