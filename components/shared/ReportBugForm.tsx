@@ -47,7 +47,7 @@ const ReportBugForm = ({ userId }: ReportBugParams ) => {
 
             if (newBug) {
                 form.reset()
-                router.push('/')
+                router.push('/my-reported-bugs')
             }
         } catch (error) {
             console.log(error)
