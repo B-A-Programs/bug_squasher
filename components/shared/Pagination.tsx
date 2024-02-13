@@ -11,7 +11,7 @@ type PaginationProps = {
   urlParamName?: string
 }
 
-const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
+const Pagination = ({ page, totalPages }: PaginationProps) => {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -22,7 +22,7 @@ const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
 
     const newUrl = formUrlQuery({
       params: searchParams.toString(),
-      key: urlParamName || 'page',
+      key: 'page',
       value: pageValue.toString(),
     })
 

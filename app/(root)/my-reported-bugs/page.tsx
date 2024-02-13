@@ -10,9 +10,11 @@ export default async function Home({ searchParams }: { searchParams: { page: str
   const { sessionClaims } = auth()
   const userId = sessionClaims?.userId as string
 
-  const bugs = await getUserReportedBugs({ userId, page: page })
+  const info = await getUserReportedBugs({ userId, page: page, limit: 1 })
+  const bugs = info?.data
+  const totalPages = info?.totalPages
 
-  if ((page > (bugs?.totalPages ?? 0 ))) {
+  if ((page > (totalPages ?? 0 ))) {
       redirect("/my-reported-bugs")
   }
 
@@ -24,7 +26,7 @@ export default async function Home({ searchParams }: { searchParams: { page: str
 
       <div className="flex flex-col items-center justify-between min-h-[66vh]">
         <div className="flex flex-col gap-4">
-          {bugs?.data.map((bug: IBug) => (
+          {bugs?.map((bug: IBug) => (
             <div key={bug._id} className="flex flex-col gap-2">
               <h2 className="text-2xl font-bold">{bug.title}</h2>
               <p>{bug.description}</p>
@@ -32,8 +34,8 @@ export default async function Home({ searchParams }: { searchParams: { page: str
           ))}
         </div>
 
-        {bugs?.totalPages && bugs?.totalPages > 1 && (
-          <Pagination page={page} totalPages={bugs?.totalPages} />
+        {totalPages && totalPages > 1 && (
+          <Pagination page={page} totalPages={totalPages} />
         )}
       </div>
     </div>
