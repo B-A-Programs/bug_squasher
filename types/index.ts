@@ -24,9 +24,16 @@ export type GetUserReportedBugsParams = {
     page?: number
 }
 
+export type GetFilteredParams = {
+    query?: string
+    status?: string
+    limit?: number
+    page?: number
+}
+
 // ====== URL QUERY PARAMS
 export type UrlQueryParams = {
     params: string
-    key: string
-    value: string | null
+    keys: string[]
+    values: string[]
 }

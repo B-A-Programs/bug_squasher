@@ -12,10 +12,12 @@ export const handleError = (error: unknown) => {
   throw new Error(typeof error === 'string' ? error : JSON.stringify(error))
 }
 
-export function formUrlQuery({ params, key, value }: UrlQueryParams) {
+export function formUrlQuery({ params, keys, values }: UrlQueryParams) {
   const currentUrl = qs.parse(params)
 
-  currentUrl[key] = value
+  keys.forEach((key, index) => {
+    currentUrl[key] = values[index]
+  })
 
   return qs.stringifyUrl(
     {

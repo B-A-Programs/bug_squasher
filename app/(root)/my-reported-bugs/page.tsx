@@ -1,7 +1,5 @@
 import Collection from "@/components/shared/Collection";
-import Pagination from "@/components/shared/Pagination";
 import { getUserReportedBugs } from "@/lib/actions/bug.actions";
-import { IBug } from "@/lib/database/models/bug.model";
 import { auth } from "@clerk/nextjs";
 import { redirect } from 'next/navigation'
 
@@ -15,7 +13,7 @@ export default async function Home({ searchParams }: { searchParams: { page: str
   const bugs = info?.data
   const totalPages = info?.totalPages
 
-  if ((page > (totalPages ?? 0 ))) {
+  if (totalPages && (page > (totalPages))) {
       redirect("/my-reported-bugs")
   }
 

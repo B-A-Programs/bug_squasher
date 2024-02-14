@@ -22,8 +22,8 @@ const Pagination = ({ page, totalPages }: PaginationProps) => {
 
     const newUrl = formUrlQuery({
       params: searchParams.toString(),
-      key: 'page',
-      value: pageValue.toString(),
+      keys: ['page'],
+      values: [pageValue.toString()],
     })
 
     router.push(newUrl, {scroll: false})

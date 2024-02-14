@@ -1,6 +1,6 @@
 'use server'
 
-import { CreateBugParams, GetUserReportedBugsParams } from "@/types"
+import { CreateBugParams, GetFilteredParams, GetUserReportedBugsParams } from "@/types"
 import { connectToDatabase } from "../database"
 import { handleError } from "../utils"
 import Bug from "../database/models/bug.model"
@@ -31,6 +31,30 @@ export async function getUserReportedBugs({ userId, limit = 3, page = 1 }: GetUs
     const skipAmount = (Number(page) - 1) * limit
     const bugs = await Bug.find({ reporter: userId }).sort({ status: 1, createdAt: -1 }).skip(skipAmount).limit(limit)
     const bugsCount = await Bug.countDocuments({ reporter: userId })
+
+    return {
+      data: JSON.parse(JSON.stringify(bugs)),
+      totalPages: Math.ceil(bugsCount / limit),
+    }
+  } catch (error) {
+    handleError(error)
+  }
+}
+
+export async function getFilteredBugs({ query = "", status = "all", limit = 3, page = 1 }: GetFilteredParams) {
+  try {
+    await connectToDatabase()
+
+    const skipAmount = (Number(page) - 1) * limit
+    let bugs = []
+    let bugsCount = 0
+    if (status === "all") {
+        bugs = await Bug.find({ title: { $regex: query, $options: 'i' } }).sort({ status: 1, createdAt: -1 }).skip(skipAmount).limit(limit)
+        bugsCount = await Bug.countDocuments({ title: { $regex: query, $options: 'i' } })
+    } else {
+        bugs = await Bug.find({ title: { $regex: query, $options: 'i' }, status: status }).sort({ status: 1, createdAt: -1 }).skip(skipAmount).limit(limit)
+        bugsCount = await Bug.countDocuments({ title: { $regex: query, $options: 'i' }, status: status })
+    }
 
     return {
       data: JSON.parse(JSON.stringify(bugs)),
