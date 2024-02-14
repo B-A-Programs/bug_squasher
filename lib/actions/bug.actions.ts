@@ -29,7 +29,7 @@ export async function getUserReportedBugs({ userId, limit = 3, page = 1 }: GetUs
     if (!user) throw new Error("User not found")
 
     const skipAmount = (Number(page) - 1) * limit
-    const bugs = await Bug.find({ reporter: userId }).sort({ createdAt: 1 }).skip(skipAmount).limit(limit)
+    const bugs = await Bug.find({ reporter: userId }).sort({ status: 1, createdAt: -1 }).skip(skipAmount).limit(limit)
     const bugsCount = await Bug.countDocuments({ reporter: userId })
 
     return {

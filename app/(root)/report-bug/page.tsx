@@ -7,7 +7,7 @@ export default function Home() {
 
     return (
         <div className="wrapper flex flex-col gap-12">
-            <h1 className="text-4xl font-bold text-center mt-12">
+            <h1 className="text-4xl font-extrabold text-center mt-12 purple_gradient">
                 Report a bug that you've encountered
             </h1>
             <ReportBugForm userId={userId} />
