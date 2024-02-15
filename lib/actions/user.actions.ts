@@ -32,6 +32,18 @@ export async function getUserById(userId: string) {
   }
 }
 
+export async function getAllStaffMembers() {
+  try {
+    await connectToDatabase()
+
+    const users = await User.find({ isStaff: true })
+
+    return JSON.parse(JSON.stringify(users))
+  } catch (error) {
+    handleError(error)
+  }
+}
+
 export async function updateUser(clerkId: string, user: UpdateUserParams) {
   try {
     await connectToDatabase()

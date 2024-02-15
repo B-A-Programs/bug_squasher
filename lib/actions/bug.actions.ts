@@ -3,7 +3,7 @@
 import { CreateBugParams, GetFilteredParams, GetUserReportedBugsParams } from "@/types"
 import { connectToDatabase } from "../database"
 import { handleError } from "../utils"
-import Bug from "../database/models/bug.model"
+import Bug, { IBug } from "../database/models/bug.model"
 import User from "../database/models/user.model"
 
 export async function createBug({ reporterId, title, description, stepsToReproduce }: CreateBugParams) {
@@ -25,7 +25,7 @@ export async function getBugById(bugId: string) {
   try {
     await connectToDatabase()
 
-    const bug = await Bug.findById(bugId)
+    const bug = await Bug.findById(bugId).populate("reporter").populate("resolver")
     if (!bug) throw new Error("Bug not found")
 
     return JSON.parse(JSON.stringify(bug))
@@ -74,6 +74,19 @@ export async function getFilteredBugs({ query = "", status = "all", limit = 3, p
       data: JSON.parse(JSON.stringify(bugs)),
       totalPages: Math.ceil(bugsCount / limit),
     }
+  } catch (error) {
+    handleError(error)
+  }
+}
+
+export async function updateBug(bugId: string, bug: any) {
+  try {
+    await connectToDatabase()
+
+    const updatedBug = await Bug.findByIdAndUpdate(bugId, bug, { new: true })
+
+    if (!updatedBug) throw new Error('Bug update failed')
+    return JSON.parse(JSON.stringify(updatedBug))
   } catch (error) {
     handleError(error)
   }
