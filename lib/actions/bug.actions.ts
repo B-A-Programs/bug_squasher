@@ -21,6 +21,20 @@ export async function createBug({ reporterId, title, description, stepsToReprodu
   }
 }
 
+export async function getBugById(bugId: string) {
+  try {
+    await connectToDatabase()
+
+    const bug = await Bug.findById(bugId)
+    if (!bug) throw new Error("Bug not found")
+
+    return JSON.parse(JSON.stringify(bug))
+  } catch (error) {
+    handleError(error)
+  
+  }
+}
+
 export async function getUserReportedBugs({ userId, limit = 3, page = 1 }: GetUserReportedBugsParams) {
   try {
     await connectToDatabase()
