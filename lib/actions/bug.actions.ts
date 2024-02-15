@@ -55,6 +55,26 @@ export async function getUserReportedBugs({ userId, limit = 3, page = 1 }: GetUs
   }
 }
 
+export async function getResolverBugs({ userId, limit = 3, page = 1 }: GetUserReportedBugsParams) {
+  try {
+    await connectToDatabase()
+
+    const user = await User.findById(userId)
+    if (!user) throw new Error("User not found")
+
+    const skipAmount = (Number(page) - 1) * limit
+    const bugs = await Bug.find({ resolver: userId, status: "In Progress" }).sort({ createdAt: -1 }).skip(skipAmount).limit(limit)
+    const bugsCount = await Bug.countDocuments({ resolver: userId, status: "In Progress" })
+
+    return {
+      data: JSON.parse(JSON.stringify(bugs)),
+      totalPages: Math.ceil(bugsCount / limit),
+    }
+  } catch (error) {
+    handleError(error)
+  }
+}
+
 export async function getFilteredBugs({ query = "", status = "all", limit = 3, page = 1 }: GetFilteredParams) {
   try {
     await connectToDatabase()

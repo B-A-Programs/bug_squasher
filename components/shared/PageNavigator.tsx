@@ -30,7 +30,7 @@ const PageNavigator = ({ userId }: { userId: string }) => {
                 <Link href="/reported-bugs">
                   <Button className="rounded-full bg-indigo-600 font-semibold text-md w-48 py-6">View reported bugs</Button>
                 </Link>
-                <Link href="/my-reported-bugs">
+                <Link href="/bugs-to-resolve">
                   <Button className="rounded-full bg-indigo-600 font-semibold text-md w-48 py-6">Bugs To Resolve</Button>
                 </Link>
               </div>
