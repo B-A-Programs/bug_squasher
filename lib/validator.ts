@@ -5,3 +5,7 @@ export const reportBugFormSchema = z.object({
     description: z.string().min(16, "Description must be at least 16 characters.").max(400, "Description must be at most 400 characters."),
     stepsToReproduce: z.string().min(16, "Steps to reproduce must be at least 16 characters.").max(400, "Steps to reproduce must be at most 400 characters."),
 })
+
+export const createNoteFormSchema = z.object({
+    text: z.string().min(16, "Note must be at least 16 characters.").max(400, "Note must be at most 400 characters."),
+})

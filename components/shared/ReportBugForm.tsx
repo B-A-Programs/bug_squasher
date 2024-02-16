@@ -41,7 +41,6 @@ const ReportBugForm = ({ userId }: ReportBugParams ) => {
     async function onSubmit(values: z.infer<typeof reportBugFormSchema>) {
         try {
             const { title, description, stepsToReproduce } = values
-            console.log({ userId, title, description, stepsToReproduce })
 
             const newBug = await createBug({ reporterId: userId, title, description, stepsToReproduce })
 
