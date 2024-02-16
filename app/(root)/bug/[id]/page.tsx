@@ -1,6 +1,7 @@
 import Hero from "@/components/shared/Hero";
 import StaffActions from "@/components/shared/StaffActions";
 import { getBugById } from "@/lib/actions/bug.actions";
+import { getNotesForBug } from "@/lib/actions/note.actions";
 import { getAllStaffMembers, getUserById } from "@/lib/actions/user.actions";
 import { formatDateTime } from "@/lib/utils";
 import { auth } from "@clerk/nextjs";
@@ -13,6 +14,7 @@ export default async function Home({ params: { id } }: { params: { id: string } 
     const userId = sessionClaims?.userId as string
     const user = await getUserById(userId)
     const resolvers = await getAllStaffMembers()
+    const notes = await getNotesForBug({ bugId: id })
 
     return (
         <div className="wrapper">
@@ -37,7 +39,7 @@ export default async function Home({ params: { id } }: { params: { id: string } 
                 </ul>
             </div>
 
-            <StaffActions user={user} bug={bug} resolvers={resolvers} />
+            <StaffActions user={user} bug={bug} resolvers={resolvers} notes={notes} />
         </div>
     );
 }

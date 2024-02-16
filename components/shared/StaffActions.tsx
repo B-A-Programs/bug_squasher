@@ -17,8 +17,9 @@ import { updateBug } from '@/lib/actions/bug.actions'
 import { useRouter } from 'next/navigation'
 import { Button } from '../ui/button'
 import CreateNoteForm from './CreateNoteForm'
+import { INote } from '@/lib/database/models/note.model'
 
-const StaffActions = ({ user, bug, resolvers }: { user: IUser, bug: IBug, resolvers: IUser[] }) => {
+const StaffActions = ({ user, bug, resolvers, notes }: { user: IUser, bug: IBug, resolvers: IUser[], notes: INote[] }) => {
   const router = useRouter()
 
   const assignToStaff = async (resolverId: string) => {
@@ -89,8 +90,22 @@ const StaffActions = ({ user, bug, resolvers }: { user: IUser, bug: IBug, resolv
                   </AlertDialogContent>
                 </AlertDialog>
               </div>
-            
+
             )}
+          </div>
+          <hr className='h-[2px] bg-gray-400 mt-10' />
+          <div className='text-center font-bold text-3xl my-12'>Bug notes</div>
+
+          {notes.length === 0 && (
+            <div className='text-center text-lg font-semibold text-gray-600'>No notes exist yet for this bug</div>
+          )}
+          <div className='grid grid-cols-2 gap-4'>
+            {notes.map((note: INote) => (
+              <div key={note._id} className='bg-white shadow-md rounded overflow-auto px-4 py-3 mb-4'>
+                <p className='text-gray-700 font-semibold'>Note by: {note.author.firstName} {note.author.lastName}</p>
+                <p className='text-gray-600'>{note.text}</p>
+              </div>
+            ))}
           </div>
         </>
       )}

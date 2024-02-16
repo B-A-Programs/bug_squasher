@@ -37,3 +37,7 @@ export type UrlQueryParams = {
     keys: string[]
     values: string[]
 }
+
+export type getNotesForBugParams = {
+    bugId: string
+}

@@ -5,6 +5,7 @@ import { handleError } from "../utils"
 import User from "../database/models/user.model"
 import Note from "../database/models/note.model"
 import Bug from "../database/models/bug.model"
+import { getNotesForBugParams } from "@/types"
 
 export async function createNote({ text, authorId, bugId }: { text: string, authorId: string, bugId: string}) {
   try {
@@ -23,14 +24,14 @@ export async function createNote({ text, authorId, bugId }: { text: string, auth
   }
 }
 
-export async function getNotesForBug({ bugId }: { bugId: string }) {
+export async function getNotesForBug({ bugId }: getNotesForBugParams) {
   try {
     await connectToDatabase()
 
     const bug = Bug.findById(bugId)
     if (!bug) throw new Error("bug not found")
 
-    const notes = await Bug.find({ bug: bugId})
+    const notes = await Note.find({ bug: bugId }).populate("author")
 
     return JSON.parse(JSON.stringify(notes))
   } catch (error) {

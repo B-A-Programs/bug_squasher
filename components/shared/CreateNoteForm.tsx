@@ -29,7 +29,7 @@ const CreateNoteForm = ({ userId, bugId }: { userId: string, bugId: string }) =>
 
             if (newNote) {
                 form.reset()
-                router.push(`/bug/${bugId}`)
+                router.refresh()
             }
         } catch (error) {
             handleError(error)

@@ -11,7 +11,7 @@ export default function RootLayout({
             <NavBar />
         </header>
         <main className="flex-1 bg-slate-200">{children}</main>
-        <footer className="flex justify-center bg-slate-200 text-slate-600 mb-1 mt-3">
+        <footer className="flex justify-center bg-slate-200 text-slate-600 mb-1 pt-3">
             2024 BugSquasher. All rights reserved.
         </footer>
     </div>
