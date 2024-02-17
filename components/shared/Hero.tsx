@@ -22,7 +22,7 @@ const Hero = async () => {
           <PageNavigator userId={userId} />
         </SignedIn>
       </div>
-      <Image src="/assets/hero.png" alt="Hero" width={500} height={500} className="rounded-full bg-cover overflow-hidden" />
+      <Image src="/assets/Hero.png" alt="Hero" width={500} height={500} className="rounded-full bg-cover overflow-hidden" />
     </div>
   )
 }
