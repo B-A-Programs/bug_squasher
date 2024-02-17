@@ -8,6 +8,8 @@ https://bug-squasher-coral.vercel.app/
 
 (Only user functionality. For staff member functionality contact me.)
 
+Presentation video: https://youtu.be/wz1kcGbTdfo
+
 ## Features
 
 - **Bug Reporting**: Users can easily report bugs by providing essential details such as description and steps to reproduce.
