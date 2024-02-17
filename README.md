@@ -2,6 +2,10 @@
 
 BugSquasher is a bug tracking application designed to streamline the process of reporting and resolving bugs within a software development team. With BugSquasher, users can report bugs, track their status, assign them to staff members, add notes, and update their progress, all within a user-friendly interface.
 
+## Website
+
+https://bug-squasher-coral.vercel.app/
+
 ## Features
 
 - **Bug Reporting**: Users can easily report bugs by providing essential details such as description and steps to reproduce.
@@ -53,10 +57,6 @@ BugSquasher is a bug tracking application designed to streamline the process of 
     ```npm run dev```
     
 12. Open your browser and navigate to `http://localhost:3000` to access BugSquasher.
-
-## Website
-
-https://bug-squasher-coral.vercel.app/
 
 ## Contributing
 
