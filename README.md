@@ -6,6 +6,8 @@ BugSquasher is a bug tracking application designed to streamline the process of 
 
 https://bug-squasher-coral.vercel.app/
 
+(Only user functionality. For staff member functionality contact me.)
+
 ## Features
 
 - **Bug Reporting**: Users can easily report bugs by providing essential details such as description and steps to reproduce.
