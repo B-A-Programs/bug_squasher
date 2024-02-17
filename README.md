@@ -54,6 +54,10 @@ BugSquasher is a bug tracking application designed to streamline the process of 
     
 12. Open your browser and navigate to `http://localhost:3000` to access BugSquasher.
 
+## Website
+
+https://bug-squasher-coral.vercel.app/
+
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to BugSquasher, please fork the repository and submit a pull request with your changes.
